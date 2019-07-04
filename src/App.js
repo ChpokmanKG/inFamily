@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import Header from './components/header';
+import MainContent from './containers/main-page';
+import ForFutureParents from './containers/forFutureParents';
+import InformationAboutChilds from './containers/InformationAboutChildren';
+import YouAreParent from './containers/youAreParent';
+import Specialist from './containers/specialist';
+import Staff from './containers/staff';
+import Categories from './containers/categories';
+import './fonts.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Header />
+        <div className="content all-center">
+          <Switch>
+            <Route exact path="/" component={MainContent}/>
+            <Route path="/want" component={ForFutureParents}/>
+            <Route exact path="/informationAboutChildren" component={InformationAboutChilds}/>
+            <Route path="/informationAboutChildren/:newsId" component={Categories}/>
+            <Route path="/youAreParent" component={YouAreParent}/>
+            <Route exact path="/specialist" component={Specialist}/>
+            <Route path="/specialist/:number" component={Staff}/>
+          </Switch>
+        </div>
+    </React.Fragment>
   );
 }
 
