@@ -9,6 +9,7 @@ export default {
   getInfoForFutureParents: () => http.get('/sections/3/'),
   getInfoForParents: () => http.get('/sections/2/'),
   getSpecialist: () => http.get('/people/'),
-  getPerson: num => http.get(`/people/${num}`),
-  getCategories: newsId => http.get(`categories/${newsId}`)
+  getPerson: num => http.get(`/people/${num}/`),
+  getCategories: newsId => http.get(`categories/${newsId}/`),
+  postRegistrationNewUser:() => http.post('/api/documents/')
 }

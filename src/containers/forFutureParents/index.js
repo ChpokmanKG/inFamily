@@ -19,7 +19,11 @@ class ForFutureParents extends React.Component {
         {loading ? 
               <Loading /> 
               : 
-              <Link to={`/informationAboutChildren/${sections[0].id}`}><Wrap title={sections[0].title} img={sections[0].image} /></Link>
+              <>
+                <Link to={`/informationAboutChildren/${sections[0].id}`}><Wrap title={sections[0].title} img={sections[0].image} /></Link>
+                <Link to={'/informationAboutChildrenForm'}><Wrap title={sections[1].title} img={sections[1].image}/></Link>
+                <Link to={'/informationAboutChildrenTest'}><Wrap title={sections[2].title} img={sections[2].image}/></Link>
+              </>
               }
       </div>
     )
