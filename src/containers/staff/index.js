@@ -16,7 +16,7 @@ class Staff extends React.Component {
     const {name,photo,contacts,schedule,address} = this.props.person.personData;
     const {loading} = this.props.person;
     return (
-      <div className="bg-white w100">
+      <div className="bg-white w100 h100proc">
         <div className="content__text-wrap">
           {loading ? <Loading /> : <PhotoAndName img={photo} name={name}/>} 
         </div>

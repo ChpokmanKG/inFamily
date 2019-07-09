@@ -9,21 +9,23 @@ import {
   USER_CHANGE_INPUT_VALUE_HEALTH,
   USER_CHANGE_INPUT_VALUE_CHAR_JOB,
   USER_CHANGE_INPUT_VALUE_CHAR_RES,
-  USER_CHANGE_INPUT_VALUE_BIGRAPHY, } from './action';
+  USER_CHANGE_INPUT_VALUE_BIOGRAPHY,
+  CHANGE_BOOL, } from './action';
 
 const initialState = {
   name: '',
   phone: '',
   email: '',
   device_id: 'YOLOSWAG',
-  income: '',
-  family: '',
-  residence: '',
-  criminal_record: '',
-  health: '',
-  char_job: '',
-  char_res: '',
-  biography: ''
+  bool: true,
+  income: {},
+  family: {},
+  residence: {},
+  criminal_record: {},
+  health: {},
+  char_job: {},
+  char_res: {},
+  biography: {}
 }
 
 export default (state = initialState,action) => {
@@ -38,6 +40,12 @@ export default (state = initialState,action) => {
       return {
         ...state,
         phone: action.payload
+      }
+
+    case CHANGE_BOOL:
+      return {
+        ...state,
+        bool: false
       }
 
     case USER_CHANGE_INPUT_VALUE_EMAIL:
@@ -88,7 +96,7 @@ export default (state = initialState,action) => {
         char_res: action.payload
       }
 
-    case USER_CHANGE_INPUT_VALUE_BIGRAPHY:
+    case USER_CHANGE_INPUT_VALUE_BIOGRAPHY:
       return {
         ...state,
         biography: action.payload
