@@ -1,140 +1,166 @@
 import React from 'react';
-import Axios from 'axios';
 
-class FormForDocuments extends React.Component {
+class SecondForm extends React.Component {
 
-  handleChangeIncomePhoto(e) {
-    e.preventDefault();
-    let file = e.target.files[0];
-    this.props.incomeThunk(file);
-  }
-  
-  handleChangeFamilyPhoto(e) {
-    e.preventDefault();
-    let file = e.target.files[0];
-    this.props.jobThunk(file);
+  changeImgFamily(e) {
+    this.props.funcChangeImgFamily(e.target.files[0]);
   }
 
-  handleChangeResidencePhoto(e) {
-    e.preventDefault();
-    let file = e.target.files[0];
-    this.props.residenceThunk(file);
+  componentDidMount() {
+    console.log(this.props);
   }
 
-  handleChangeCriminalPhoto(e) {
-    e.preventDefault();
-    let file = e.target.files[0];
-    this.props.criminalThunk(file);
+  changeImgIncome(e) {
+    this.props.funcChangeImgIncome(e.target.files[0]);
   }
 
-  handleChangeJobPhoto(e) {
-    e.preventDefault();
-    let file = e.target.files[0];
-    this.props.healthThunk(file);
+  changeImgResidence(e) {
+    this.props.funcChangeImgResidence(e.target.files[0]);
   }
 
-  handleChangeBiographyPhoto(e) {
-    e.preventDefault();
-    let file = e.target.files[0];
-    this.props.biographyThunk(file);
+  changeImgBiography(e) {
+    this.props.funcChangeImgBiography(e.target.files[0])
   }
 
-  handleChangeJobCharResPhoto(e) {
-    e.preventDefault();
-    let file = e.target.files[0];
-    this.props.charResThunk(file);
+  changeImgCriminal(e) {
+    this.props.funcChangeImgCriminal(e.target.files[0]);
   }
 
-  formSubmit(e) {
+  changeImgHealth(e) {
+    this.props.funcChangeImgHealth(e.target.files[0]);
+  }
 
+  changeImgCharJob(e) {
+    this.props.funcChangeImgCharJob(e.target.files[0]);
+  }
+
+  changeImgCharRes(e) {
+    this.props.funcChangeImgCharRes(e.target.files[0])
+  }
+
+  sendForm(e) {
     e.preventDefault();
-    
-    const body = {
-      name: this.props.name,
-      phone: this.props.phone,
-      email: this.props.email,
-      device_id: this.props.device_id,
-      income: this.props.income,
-      family: this.props.family,
-      residence: this.props.income,
-      criminal_record: this.props.criminal_record,
-      health: this.props.health,
-      char_job: this.props.biography,
-      char_res: this.props.char_res,
-      biography: this.props.biography,
+
+    const {
+      name,
+      phone,
+      email,
+      device_id,
+      family,
+      income,
+      residence,
+      criminal_record,
+      health,
+      char_job,
+      char_res,
+      biography
+    } = this.props.formData;
+
+    const data = {
+      name,
+      phone,
+      email,
+      device_id,
+      family,
+      income,
+      residence,
+      criminal_record,
+      health,
+      char_job,
+      char_res,
+      biography
+    }
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     }
 
-    console.log(body);
-    
-    Axios({
-      url: 'https://cors-anywhere.herokuapp.com/http://46.101.236.211:5678/api/documents/',
-      method: 'post',
-      body: body
-    }).then(res => {
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
-    })
+
+    this.props.sendFormThunk(data,config);
   }
 
   render() {
     return (
-      <form 
-        style={{display: this.props.bool ? 'none' : 'flex'}}
-        className="content__registration-form w100 all-center"
-        onSubmit={(e) => this.formSubmit(e)}>
+      <form className="content__registration-form w100 all-center" onSubmit={e => this.sendForm(e)}>
         <h4 style={{marginTop: '10px'}}>Сбор документов</h4>
+
+        {/* family */}
         <label>
-          <b>Справка о заработной плате</b><br />
-          <span>Копия сведения о совокупном доходе граждан и выписка из домовой
-          книжки с место жительства или документ, подтверждающий право
-          собственности на жилое помещение</span>
-        </label>
-        <input type="file" required={true} onChange={e => this.handleChangeIncomePhoto(e)}/>
-        <label>
-          <b>Справка с места работы</b><br />
+          <b>Справка о составе семьи</b><br />
           <span>
-            Справка с места работы с указанием должности и заработной платы
-            либо копия декларации о доходах
+            C места жительства
           </span>
         </label>
-        <input type="file" onChange={e => this.handleChangeFamilyPhoto(e)}/>
+        <input type="file" required={true} onChange={e => this.changeImgFamily(e)}/>
+
+        {/* income */}
+        <label>
+          <b>Справка о заработной плате</b><br />
+          <span>
+            Копия сведения о совокупном доходе граждан и выписка из домовой книжки с место жительства или документ, подтверждающий право собственности на жилое помещение
+          </span>
+        </label>
+        <input type="file" required={true} onChange={e => this.changeImgIncome(e)}/>
+
+        {/* residence */}
+        <label>
+          <b>Место проживания</b><br />
+          <span>
+            Право собственности на жилье или договор об аренде
+          </span>
+        </label>
+        <input type="file" required={true} onChange={e => this.changeImgResidence(e)}/>
+
+        {/* biography */}
         <label>
           <b>Полная автобиография</b><br />
           <span>
             Полная автобиография
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.handleChangeBiographyPhoto(e)}/>
+        <input type="file" required={true} onChange={e => this.changeImgBiography(e)}/>
+
+        {/* criminal_record */}
         <label>
-          <b>Справка органов внутренних дел</b><br />
+          <b>Справка об отсутствии судимости</b><br />
           <span>
             Справка органов внутренних дел об отсуствии судимости
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.handleChangeCriminalPhoto(e)}/>
+        <input type="file" required={true} onChange={e => this.changeImgCriminal(e)}/>
+
+        {/* health */}
         <label>
           <b>Медицинское заключение</b><br />
           <span>
-            Медицинское заключение государственного
-            лечебно-профилактического учереждения о состоянии
-            здоровья лица и членов его семьи, желающего усыновить
-            ребенка, оформленное в порядке, установленном Министерством здравоохранения
-            Кыргызской Республики
+            Медицинское заключение государственного лечебно-профилактического учереждения о состоянии здоровья лица и членов его семьи, желающего усыновить ребенка, оформленное в порядке, установленном Министерством здравоохранения Кыргызской Республики
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.handleChangeJobPhoto(e)}/>
+        <input type="file" required={true} onChange={e => this.changeImgHealth(e)}/>
+
+        {/* char_job */}
         <label>
-          <b>Харатеристики с места работы и Харатеристики с места жительства</b><br />
+          <b>Харатеристики с места работы</b><br />
           <span>
-            Харатеристики с места работы и Харатеристики с места жительства
+          Харатеристики с места работы
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.handleChangeJobCharResPhoto(e)}/>
-        <input type="submit" value='Отправить'/>
+        <input type="file" required={true} onChange={e => this.changeImgCharJob(e)}/>
+
+        {/* char_res */}
+        <label>
+          <b>Харатеристики с места жительства</b><br />
+          <span>
+            Харатеристики с места жительства
+          </span>
+        </label>
+        <input type="file" required={true} onChange={e => this.changeImgCharRes(e)}/>
+
+        <input type="submit" value="Отправить"/>
       </form>
     )
   }
 }
 
-export default FormForDocuments;
+export default SecondForm;

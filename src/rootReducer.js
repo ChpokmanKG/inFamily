@@ -5,7 +5,7 @@ import youAreParent from './containers/youAreParent/reducer';
 import persons from './containers/specialist/reducer';
 import personsProfile from './containers/staff/reducer';
 import categories from './containers/categories/reducer';
-import form from './containers/informationAboutChildrenForm/reducer';
+import formData from './containers/InformationAboutChildrenForm/reducer';
 
 export default combineReducers({
   forFutureParent: forFutureParent,
@@ -14,5 +14,5 @@ export default combineReducers({
   persons: persons,
   personsProfile: personsProfile,
   categories: categories,
-  form: form
+  formData: formData
 })

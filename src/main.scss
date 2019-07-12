@@ -51,6 +51,9 @@ body {
       &:last-child {
         margin: 20px 0;
       }
+      &:active {
+        border: 1px solid rgb(36, 36, 36);
+      }
     }
     label {
       width: 100%;
@@ -322,4 +325,20 @@ body {
 }
 .br {
   border-radius: 10px 10px 0 0 !important;
+}
+
+.error-form {
+  flex-direction: column;
+  text-align: center;
+  font-family: 'TT Regular';
+
+  h4 {
+    font-family: 'TT Bold';
+  }
+  button {
+    margin-top: 14px;
+    padding: 20px 59px;
+    border-radius: 10px;
+    border: none;
+  }
 }

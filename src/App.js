@@ -8,7 +8,8 @@ import YouAreParent from './containers/youAreParent';
 import Specialist from './containers/specialist';
 import Staff from './containers/staff';
 import Categories from './containers/categories';
-import InformationAboutChildrenForm from './containers/informationAboutChildrenForm';
+import InformationAboutChildrenForm from './containers/InformationAboutChildrenForm';
+import TestForParents from './containers/testForParents';
 import './fonts.scss';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/specialist" component={Specialist}/>
             <Route path="/specialist/:number" component={Staff}/>
             <Route path="/informationAboutChildrenForm" component={InformationAboutChildrenForm}/>
+            <Route path="/informationAboutChildrenTest" component={TestForParents}/>
           </Switch>
         </div>
     </React.Fragment>

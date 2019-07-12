@@ -1,94 +1,90 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import FirstForm from './components/firstForm';
-import FormForDocuments from './components/secondForm';
+import { sendFormDataThunk,sendFormDataFilesThunk } from './action';
+import Error from './components/error';
+import SecondForm from './components/secondForm';
 import {
-  userChangeInputValueNameThunk,
-  userChangeInputValuePhoneThunk,
-  userChangeInputValueEmailThunk,
-  userChangeIncomeImageThunk,
-  userChangeCharJobImageThunk,
-  userChangeResidenceImageThunk,
-  userChangeCriminalImageThunk,
-  userChangeHealthImageThunk,
-  userChangeBiographyImageThunk,
-  userChangeCharResImageThunk,
-  changeBool,
-} from './action'
+  userChangeName,
+  userChangeNumber,
+  userChangeEmail,
+  changeImgFamily,
+  changeImgIncome,
+  changeImgResidence,
+  changeImgBiography,
+  changeImgCriminal,
+  changeImgHealth,
+  changeImgCharJob,
+  changeImgCharRes
+} from './action';
 
 class InformationAboutChildrenForm extends React.Component {
 
-  
+  showContent() {
+    const { name, phone, email, loading,registered } = this.props.formData;
+    if(loading) {
+      return (
+        <FirstForm 
+          name={name}
+          phone={phone}
+          email={email}
+          nameChange={e => this.props.name(e)}
+          phoneChange={e => this.props.phone(e)}
+          emailChange={e => this.props.email(e)}
+          sendFormThunk={data => this.props.sendForm(data)}
+        />
+      )
+    }if(registered) {
+      return (
+        <SecondForm
+          {...this.props}
+          funcChangeImgFamily={e => this.props.changeImgFamily(e)}
+          funcChangeImgIncome={e => this.props.changeImgIncome(e)}
+          funcChangeImgResidence={e => this.props.changeImgResidence(e)}
+          funcChangeImgBiography={e => this.props.changeImgBiography(e)}
+          funcChangeImgCriminal={e => this.props.changeImgCriminal(e)}
+          funcChangeImgHealth={e => this.props.changeImgHealth(e)}
+          funcChangeImgCharJob={e => this.props.changeImgCharJob(e)}
+          funcChangeImgCharRes={e => this.props.changeImgCharRes(e)}
+          sendFormThunk={(data,config) => this.props.sendFormDataFilesThunk(data,config)}
+        />
+      )
+    }
+    else {
+      return (
+        <Error />
+      )
+    }
+  }
 
-  render(){
-    const { name,
-            phone,
-            email,
-            device_id,
-            bool,
-            income,
-            family,
-            residence,
-            criminal_record,
-            health,
-            char_job,
-            char_res,
-            biography } = this.props.data;
+  render() {
+
     return (
       <div className="content__text-wrap bg-white">
-        <FirstForm
-          name={name}
-          phone={phone}
-          email={email}
-          bool={bool}
-          device_id={device_id}
-          nameThunk={e => this.props.name(e)}
-          phoneThunk={e => this.props.phone(e)}
-          emailThunk={e => this.props.email(e)}
-          changeBool={() => this.props.changeBool()}/>
-        <FormForDocuments 
-          income={income}
-          family={family}
-          residence={residence}
-          criminal_record={criminal_record}
-          health={health}
-          char_job={char_job}
-          char_res={char_res}
-          biography={biography}
-          device_id={device_id}
-          name={name}
-          phone={phone}
-          email={email}
-          
-          incomeThunk={(file) => this.props.income(file)}
-          jobThunk={file => this.props.job(file)}
-          residenceThunk={file => this.props.residence(file)}
-          biographyThunk={file => this.props.biography(file)}
-          healthThunk={file => this.props.health(file)}
-          criminalThunk={file => this.props.criminal(file)}
-          charResThunk={file => this.props.charRes(file)}
-          bool={bool}/>
+        {this.showContent()}
       </div>
     )
   }
 }
 
 const mapStateToProps = store => ({
-  data: store.form
+  formData: store.formData
 })
 
 const mapDispatchToProps = dispatch => ({
-  name: name => dispatch(userChangeInputValueNameThunk(name)),
-  phone: phone => dispatch(userChangeInputValuePhoneThunk(phone)),
-  email: email => dispatch(userChangeInputValueEmailThunk(email)),
-  income: file => dispatch(userChangeIncomeImageThunk(file)),
-  job: file => dispatch(userChangeCharJobImageThunk(file)),
-  residence: file => dispatch(userChangeResidenceImageThunk(file)),
-  biography: file => dispatch(userChangeBiographyImageThunk(file)),
-  health: file => dispatch(userChangeHealthImageThunk(file)),
-  criminal: file => dispatch(userChangeCriminalImageThunk(file)),
-  charRes: file => dispatch(userChangeCharResImageThunk(file)),
-  changeBool: () => dispatch(changeBool())
+  name: e => dispatch(userChangeName(e)),
+  phone: e => dispatch(userChangeNumber(e)),
+  email: e => dispatch(userChangeEmail(e)),
+  sendForm: data => dispatch(sendFormDataThunk(data)),
+  sendFormDataFilesThunk: (data,config) => dispatch(sendFormDataFilesThunk(data,config)),
+  changeImgFamily: img => dispatch(changeImgFamily(img)),
+  changeImgIncome: img => dispatch(changeImgIncome(img)),
+  changeImgResidence: img => dispatch(changeImgResidence(img)),
+  changeImgBiography: img => dispatch(changeImgBiography(img)),
+  changeImgCriminal: img => dispatch(changeImgCriminal(img)),
+  changeImgHealth: img => dispatch(changeImgHealth(img)),
+  changeImgCharJob: img => dispatch(changeImgCharJob(img)),
+  changeImgCharRes: img => dispatch(changeImgCharRes(img))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(InformationAboutChildrenForm);

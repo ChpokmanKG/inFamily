@@ -1,108 +1,126 @@
 import {
-  USER_CHANGE_INPUT_VALUE_NAME,
-  USER_CHANGE_INPUT_VALUE_PHONE,
-  USER_CHANGE_INPUT_VALUE_EMAIL,
-  USER_CHANGE_INPUT_VALUE_INCOME,
-  USER_CHANGE_INPUT_VALUE_FAMILY,
-  USER_CHANGE_INPUT_VALUE_RESIDENCE,
-  USER_CHANGE_INPUT_VALUE_CRIMINAL_RECORD,
-  USER_CHANGE_INPUT_VALUE_HEALTH,
-  USER_CHANGE_INPUT_VALUE_CHAR_JOB,
-  USER_CHANGE_INPUT_VALUE_CHAR_RES,
-  USER_CHANGE_INPUT_VALUE_BIOGRAPHY,
-  CHANGE_BOOL, } from './action';
+  CHANGE_NAME,
+  CHANGE_NUMBER,
+  CHANGE_EMAIL,
+  IMG_FAMILY,
+  IMG_INCOME,
+  IMG_RESIDENCE,
+  IMG_BIOGRAPHY,
+  IMG_CRIMINAL,
+  IMG_HEALTH,
+  IMG_CHAR_JOB,
+  IMG_CHAR_RES,
 
-const initialState = {
+  SEND_FORM,
+  SEND_FORM_SUCCES,
+  SEND_FORM_ERROR,
+} from './action';
+
+const initalState = {
   name: '',
   phone: '',
   email: '',
   device_id: 'YOLOSWAG',
-  bool: true,
-  income: {},
-  family: {},
-  residence: {},
-  criminal_record: {},
-  health: {},
-  char_job: {},
-  char_res: {},
-  biography: {}
+  family: null,
+  income: null,
+  residence: null,
+  criminal_record: null,
+  health: null,
+  char_job: null,
+  char_res: null,
+  biography: null,
+  registered: false,
+  loading: true,
 }
 
-export default (state = initialState,action) => {
+export default ( state = initalState, action ) => {
   switch(action.type) {
-    case USER_CHANGE_INPUT_VALUE_NAME:
+    case CHANGE_NAME:
       return {
         ...state,
         name: action.payload
       }
-    
-    case USER_CHANGE_INPUT_VALUE_PHONE:
+
+    case CHANGE_NUMBER:
       return {
         ...state,
         phone: action.payload
       }
 
-    case CHANGE_BOOL:
-      return {
-        ...state,
-        bool: false
-      }
-
-    case USER_CHANGE_INPUT_VALUE_EMAIL:
+    case CHANGE_EMAIL:
       return {
         ...state,
         email: action.payload
       }
 
-    case USER_CHANGE_INPUT_VALUE_INCOME:
-      return {
-        ...state,
-        income: action.payload
-      }
-
-    case USER_CHANGE_INPUT_VALUE_FAMILY:
+    case IMG_FAMILY:
       return {
         ...state,
         family: action.payload
       }
 
-    case USER_CHANGE_INPUT_VALUE_RESIDENCE:
+    case IMG_INCOME:
+      return {
+        ...state,
+        income: action.payload
+      }
+
+    case IMG_RESIDENCE:
       return {
         ...state,
         residence: action.payload
       }
 
-    case USER_CHANGE_INPUT_VALUE_CRIMINAL_RECORD:
+    case IMG_BIOGRAPHY:
+      return {
+        ...state,
+        biography: action.payload
+      }
+
+    case IMG_CRIMINAL:
       return {
         ...state,
         criminal_record: action.payload
       }
 
-    case USER_CHANGE_INPUT_VALUE_HEALTH:
+    case IMG_HEALTH:
       return {
         ...state,
         health: action.payload
       }
-    
-    case USER_CHANGE_INPUT_VALUE_CHAR_JOB:
+
+    case IMG_CHAR_JOB:
       return {
         ...state,
         char_job: action.payload
       }
 
-    case USER_CHANGE_INPUT_VALUE_CHAR_RES:
+    case IMG_CHAR_RES:
       return {
         ...state,
         char_res: action.payload
       }
 
-    case USER_CHANGE_INPUT_VALUE_BIOGRAPHY:
+    case SEND_FORM:
       return {
         ...state,
-        biography: action.payload
+        loading: true,
       }
-    
-    default:
-      return state
+
+    case SEND_FORM_SUCCES:
+      return {
+        ...state,
+        loading: false,
+        registered: true
+      }
+
+    case SEND_FORM_ERROR:
+      return {
+        ...state,
+        loading: false,
+      }
+
+      default:
+        return state;
   }
 }
