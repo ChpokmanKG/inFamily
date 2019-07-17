@@ -12,19 +12,29 @@ class FirstForm extends React.Component {
 
   handleChangeEmail(e) {
     this.props.emailChange(e.target.value);
+
+    function getRandomArbitary() {
+      return Math.random() * (100000 - 0) + 0;
+    }
+
+    this.props.newDeviceId(getRandomArbitary())
   }
 
   sendForm(e) {
     e.preventDefault();
-    const { name, phone, email } = this.props;
-    
+    const { name, phone, email, device_id } = this.props;
     const data = {
       name,
       phone,
-      email
+      email,
+      device_id
     }
-    
+    console.log('Это из первой формы ',data);
     this.props.sendFormThunk(data);
+  }
+
+  componentDidMount(){
+    console.log(this.props)
   }
 
   render() {

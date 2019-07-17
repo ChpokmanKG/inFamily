@@ -54,7 +54,7 @@ class SecondForm extends React.Component {
       char_job,
       char_res,
       biography
-    } = this.props.formData;
+    } = this.props;
 
     const data = {
       name,
@@ -77,7 +77,7 @@ class SecondForm extends React.Component {
     }
 
 
-    this.props.sendFormThunk(data,config);
+    this.props.sendFormThunk(data);
   }
 
   render() {

@@ -15,6 +15,7 @@ export const IMG_CHAR_RES = '[INFORMATION_ABOUT_CHILDREN] IMG_CHAR_RES';
 export const SEND_FORM = '[INFORMATION_ABOUT_CHILDREN] SEND_FORM';
 export const SEND_FORM_SUCCES = '[INFORMATION_ABOUT_CHILDREN] SEND_FORM_SUCCES';
 export const SEND_FORM_ERROR = '[INFORMATION_ABOUT_CHILDREN] SEND_FORM_ERROR';
+export const NEW_DEVICE_ID = '[INFORMATION_ABOUT_CHILDREN] NEW_DEVICE_ID';
 
 export const userChangeName = name => ({
   type: CHANGE_NAME,
@@ -71,6 +72,10 @@ export const changeImgCharRes = img => ({
   payload: img
 })
 
+export const newDeviceId = id => ({
+  type: NEW_DEVICE_ID,
+  payload: id
+})
 
 
 export const sendData = () => ({
@@ -86,14 +91,15 @@ export const sendDataError = () => ({
 })
 
 export const sendFormDataThunk = data => dispatch => {
+ // console.log(data);
   dispatch(sendData());
   API.postDataForm(data)
     .then(res => {
-      console.log('Заебись');
+      console.log('res', res);
       dispatch(sendDataSucces());
     })
     .catch(err => {
-      console.log('Нихуя');
+      console.log("err ", err);
       dispatch(sendDataError());
     })
 }

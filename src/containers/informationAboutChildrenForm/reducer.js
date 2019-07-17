@@ -14,13 +14,14 @@ import {
   SEND_FORM,
   SEND_FORM_SUCCES,
   SEND_FORM_ERROR,
+  NEW_DEVICE_ID,
 } from './action';
 
 const initalState = {
   name: '',
   phone: '',
   email: '',
-  device_id: 'YOLOSWAG',
+  device_id: '',
   family: null,
   income: null,
   residence: null,
@@ -118,6 +119,12 @@ export default ( state = initalState, action ) => {
       return {
         ...state,
         loading: false,
+      }
+
+    case NEW_DEVICE_ID:
+      return {
+        ...state,
+        device_id: action.payload
       }
 
       default:

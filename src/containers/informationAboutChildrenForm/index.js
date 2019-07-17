@@ -15,19 +15,19 @@ import {
   changeImgCriminal,
   changeImgHealth,
   changeImgCharJob,
-  changeImgCharRes
+  changeImgCharRes,
+  newDeviceId
 } from './action';
 
 class InformationAboutChildrenForm extends React.Component {
 
   showContent() {
-    const { name, phone, email, loading,registered } = this.props.formData;
+    const { loading,registered, } = this.props.formData;
     if(loading) {
       return (
         <FirstForm 
-          name={name}
-          phone={phone}
-          email={email}
+          {...this.props.formData}
+          newDeviceId={id => this.props.newDeviceId(id)}
           nameChange={e => this.props.name(e)}
           phoneChange={e => this.props.phone(e)}
           emailChange={e => this.props.email(e)}
@@ -37,7 +37,7 @@ class InformationAboutChildrenForm extends React.Component {
     }if(registered) {
       return (
         <SecondForm
-          {...this.props}
+          {...this.props.formData}
           funcChangeImgFamily={e => this.props.changeImgFamily(e)}
           funcChangeImgIncome={e => this.props.changeImgIncome(e)}
           funcChangeImgResidence={e => this.props.changeImgResidence(e)}
@@ -84,7 +84,8 @@ const mapDispatchToProps = dispatch => ({
   changeImgCriminal: img => dispatch(changeImgCriminal(img)),
   changeImgHealth: img => dispatch(changeImgHealth(img)),
   changeImgCharJob: img => dispatch(changeImgCharJob(img)),
-  changeImgCharRes: img => dispatch(changeImgCharRes(img))
+  changeImgCharRes: img => dispatch(changeImgCharRes(img)),
+  newDeviceId: id => dispatch(newDeviceId(id))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(InformationAboutChildrenForm);

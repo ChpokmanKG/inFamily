@@ -36,6 +36,40 @@ body {
 
   //Блять Чика я тут
 
+  .content__questions-wrap {
+
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+    h3 {
+      font-family: 'TT Bold';
+      text-align: center;
+      width: 95%;
+      margin: 0 auto;   
+    }
+
+    p {
+      text-align: center;
+      font-family: 'TT Regular';
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 90%;
+      height: 50px;
+      display: block;
+      margin: 0 auto;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 20px;
+      font-family: 'TT Bold';
+      &:active {
+        border: 2px solid #000;
+      }
+    }
+  }
+
   .content__registration-form {
     flex-direction: column;
 

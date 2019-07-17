@@ -17,6 +17,6 @@ export default {
   getCategories: newsId => http.get(`/categories/${newsId}/`),
 
 
-  postDataForm: ( data, config ) => http.post('/', data),
-  postDataFormFiles: ( data,congig ) => http.post('/',data,congig)
+  postDataForm: ( data ) => http.post('/documents/', data),
+  postDataFormFiles: ( data,congig ) => http.post('/documents/',data,congig)
 }
