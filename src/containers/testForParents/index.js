@@ -1,4 +1,6 @@
 import React from 'react';
+import MainButton from '../../components/mainButton';
+import { Link } from 'react-router-dom';
 
 class TestForParents extends React.Component{
   
@@ -92,19 +94,32 @@ class TestForParents extends React.Component{
         </>
       )
     }else {
+      console.log(this.state.userChanceScore);
       return (
-        <h3>{Math.floor(finalScore.reduce(sum,0) / 11 * 100)}</h3>
+        <>
+          <div className="content__proc-indicator all-center">
+            <h3>{Math.floor(finalScore.reduce(sum,0) / 11 * 100)}%</h3>
+          </div>
+          <p className="content__advice">
+            Рекомендуем обсудить вопросы данного теста со специалистом 
+            (психологом,соц.работником,опытным приёмным родителем)
+          </p>
+          <Link to="specialist">
+            <MainButton text="Перейти к спику специалистов"/>
+          </Link>
+        </>
       )
     }
   }
 
   render() {
-    console.log(this.state.userChanceScore);
+    
     return (
       <div className="content__text-wrap h100proc bg-white">
         <div className="content__questions-wrap h100proc all-center">
           <div className="w100">
             {this.mainContent()}
+            
           </div>
           <div className="w100">
             {this.showButton()}

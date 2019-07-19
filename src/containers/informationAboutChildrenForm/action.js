@@ -90,10 +90,10 @@ export const sendDataError = () => ({
   type: SEND_FORM_ERROR
 })
 
-export const sendFormDataThunk = data => dispatch => {
+export const sendFormDataThunk = (data,config) => dispatch => {
  // console.log(data);
   dispatch(sendData());
-  API.postDataForm(data)
+  API.postDataForm(data,config)
     .then(res => {
       console.log('res', res);
       dispatch(sendDataSucces());
@@ -106,8 +106,7 @@ export const sendFormDataThunk = data => dispatch => {
 
 export const sendFormDataFilesThunk = (data, config) => dispatch => {
   //dispatch(sendData());
-  console.log('Фотки полетели')
-  console.log(data);
+  console.log('Фотки полетели',data)
   API.postDataFormFiles(data,config)
     .then(res => {
       console.log(res.status, res.data);

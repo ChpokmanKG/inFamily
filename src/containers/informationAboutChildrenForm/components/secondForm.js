@@ -76,13 +76,15 @@ class SecondForm extends React.Component {
       }
     }
 
+    console.log('Отправка',data);
 
-    this.props.sendFormThunk(data);
+
+    this.props.sendFormThunk(data,);
   }
 
   render() {
     return (
-      <form className="content__registration-form w100 all-center" onSubmit={e => this.sendForm(e)}>
+      <form encType="multipart/form-data" className="content__registration-form w100 all-center" onSubmit={e => this.sendForm(e)}>
         <h4 style={{marginTop: '10px'}}>Сбор документов</h4>
 
         {/* family */}
@@ -92,7 +94,7 @@ class SecondForm extends React.Component {
             C места жительства
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.changeImgFamily(e)}/>
+        <input name="family" type="file" required={true} onChange={e => this.changeImgFamily(e)}/>
 
         {/* income */}
         <label>
@@ -101,7 +103,7 @@ class SecondForm extends React.Component {
             Копия сведения о совокупном доходе граждан и выписка из домовой книжки с место жительства или документ, подтверждающий право собственности на жилое помещение
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.changeImgIncome(e)}/>
+        <input name="income" type="file" required={true} onChange={e => this.changeImgIncome(e)}/>
 
         {/* residence */}
         <label>
@@ -110,7 +112,7 @@ class SecondForm extends React.Component {
             Право собственности на жилье или договор об аренде
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.changeImgResidence(e)}/>
+        <input name="residence" type="file" required={true} onChange={e => this.changeImgResidence(e)}/>
 
         {/* biography */}
         <label>
@@ -119,7 +121,7 @@ class SecondForm extends React.Component {
             Полная автобиография
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.changeImgBiography(e)}/>
+        <input name="biography" type="file" required={true} onChange={e => this.changeImgBiography(e)}/>
 
         {/* criminal_record */}
         <label>
@@ -128,7 +130,7 @@ class SecondForm extends React.Component {
             Справка органов внутренних дел об отсуствии судимости
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.changeImgCriminal(e)}/>
+        <input name="criminal_record" type="file" required={true} onChange={e => this.changeImgCriminal(e)}/>
 
         {/* health */}
         <label>
@@ -137,7 +139,7 @@ class SecondForm extends React.Component {
             Медицинское заключение государственного лечебно-профилактического учереждения о состоянии здоровья лица и членов его семьи, желающего усыновить ребенка, оформленное в порядке, установленном Министерством здравоохранения Кыргызской Республики
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.changeImgHealth(e)}/>
+        <input name="health" type="file" required={true} onChange={e => this.changeImgHealth(e)}/>
 
         {/* char_job */}
         <label>
@@ -146,7 +148,7 @@ class SecondForm extends React.Component {
           Харатеристики с места работы
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.changeImgCharJob(e)}/>
+        <input name="char_job" type="file" required={true} onChange={e => this.changeImgCharJob(e)}/>
 
         {/* char_res */}
         <label>
@@ -155,7 +157,7 @@ class SecondForm extends React.Component {
             Харатеристики с места жительства
           </span>
         </label>
-        <input type="file" required={true} onChange={e => this.changeImgCharRes(e)}/>
+        <input name="char_res" type="file" required={true} onChange={e => this.changeImgCharRes(e)}/>
 
         <input type="submit" value="Отправить"/>
       </form>

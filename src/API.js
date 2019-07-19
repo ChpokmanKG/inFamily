@@ -18,5 +18,5 @@ export default {
 
 
   postDataForm: ( data ) => http.post('/documents/', data),
-  postDataFormFiles: ( data,congig ) => http.post('/documents/',data,congig)
+  postDataFormFiles: ( data,config ) => http.post('/documents/',data,config)
 }

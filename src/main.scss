@@ -32,9 +32,24 @@ body {
   flex-direction: column;
   overflow-y: scroll;
   justify-content: flex-start;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
 
-  //Блять Чика я тут
+  .content__advice {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 21px;
+    font-size: 20px;
+  }
+
+  .content__proc-indicator {
+    height: 150px;
+    width: 90%;
+    background: #0aa059;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    color: #fff;
+  }
 
   .content__questions-wrap {
 
@@ -208,6 +223,9 @@ body {
     text-align: center;
     margin: 0 auto;
     margin-bottom: 20px;
+    &:first-child {
+      margin-top: 20px;
+    }
   }
 
   .content__img-block {
@@ -300,6 +318,10 @@ body {
     font-family: 'TT Bold';
     margin-bottom: 20px;
     overflow: hidden;
+
+    &:first-child {
+      margin-top: 20px;
+    }
 
     a {
       color: #076cc4;
